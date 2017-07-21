@@ -1,0 +1,17 @@
+{
+  "description": {
+    "en": "uLogin",
+    "ru": "uLogin",
+    "uk": "uLogin"
+  },
+  "url": "https://github.com/pytsite/plugin-auth_ulogin",
+  "author": {
+    "name": "Alexander Shepetko",
+    "email": "a@shepetko.com",
+    "url": "https://shepetko.com"
+  },
+  "requires": {
+    "packages": [],
+    "plugins": []
+  }
+}
