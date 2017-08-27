@@ -1,4 +1,6 @@
 {
+  "name": "plugins.auth_ulogin",
+  "version": "0.1.1",
   "description": {
     "en": "uLogin",
     "ru": "uLogin",
