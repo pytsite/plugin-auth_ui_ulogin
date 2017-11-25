@@ -1,11 +1,11 @@
-"""uLogin Auth Driver.
+"""PytSite uLogin Authentication Driver Plugin
 """
 import json as _json
 from time import strptime as _strptime
 from datetime import datetime as _datetime
 from urllib.request import urlopen as _urlopen
-from pytsite import tpl as _tpl, form as _form, lang as _lang, widget as _widget, router as _router, html as _html, \
-    auth as _auth, file as _file, settings as _settings
+from pytsite import tpl as _tpl, lang as _lang, router as _router, html as _html
+from plugins import widget as _widget, auth as _auth, settings as _settings, file as _file, form as _form
 
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
@@ -13,8 +13,9 @@ __license__ = 'MIT'
 
 
 class _LoginWidget(_widget.Abstract):
-    """ULogin Widget
+    """uLogin Widget
     """
+
     def __init__(self, uid: str, **kwargs):
         """Init.
         """
@@ -28,8 +29,9 @@ class _LoginWidget(_widget.Abstract):
 
 
 class _LoginForm(_form.Form):
-    """ULogin Login Form
+    """uLogin Login Form
     """
+
     def _on_setup_widgets(self):
         """_setup() hook.
         """
@@ -51,6 +53,7 @@ class _LoginForm(_form.Form):
 class ULogin(_auth.driver.Authentication):
     """ULogin Driver
     """
+
     def get_name(self) -> str:
         """Get name of the driver
         """

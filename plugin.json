@@ -1,5 +1,5 @@
 {
-  "name": "plugins.auth_ulogin",
+  "name": "auth_ulogin",
   "version": "0.1.1",
   "description": {
     "en": "uLogin",
@@ -14,6 +14,13 @@
   },
   "requires": {
     "packages": [],
-    "plugins": []
+    "plugins": [
+      "assetman",
+      "auth",
+      "file",
+      "form",
+      "settings",
+      "widget"
+    ]
   }
 }
