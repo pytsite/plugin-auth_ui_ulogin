@@ -1,12 +1,12 @@
 {
-  "name": "auth_ulogin",
-  "version": "1.0.1",
+  "name": "auth_ui_ulogin",
+  "version": "1.0.2",
   "description": {
-    "en": "uLogin",
-    "ru": "uLogin",
-    "uk": "uLogin"
+    "en": "uLogin Authentication UI Driver",
+    "ru": "uLogin Authentication UI Driver",
+    "uk": "uLogin Authentication UI Driver"
   },
-  "url": "https://github.com/pytsite/plugin-auth_ulogin",
+  "url": "https://github.com/pytsite/plugin-auth_ui_ulogin",
   "author": {
     "name": "Alexander Shepetko",
     "email": "a@shepetko.com",
@@ -17,9 +17,10 @@
     "plugins": [
       "assetman",
       "auth",
+      "auth_ui",
       "file",
       "form",
-      "settings",
+      "twitter-bootstrap",
       "widget"
     ]
   }

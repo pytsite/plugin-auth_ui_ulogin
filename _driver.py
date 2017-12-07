@@ -5,7 +5,7 @@ from time import strptime as _strptime
 from datetime import datetime as _datetime
 from urllib.request import urlopen as _urlopen
 from pytsite import tpl as _tpl, lang as _lang, router as _router, html as _html
-from plugins import widget as _widget, auth as _auth, settings as _settings, file as _file, form as _form
+from plugins import widget as _widget, auth as _auth, auth_ui as _auth_ui, file as _file, form as _form
 
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
@@ -21,11 +21,11 @@ class _LoginWidget(_widget.Abstract):
         """
         super().__init__(uid, **kwargs)
 
-        self._js_module = 'pytsite-auth-ulogin-widget'
+        self._js_module = 'auth-ulogin-widget'
         self._css += 'widget-ulogin'
 
     def _get_element(self, **kwargs) -> _html.Element:
-        return _html.TagLessElement(_tpl.render('plugins.auth_ulogin@widget', {'widget': self}))
+        return _html.TagLessElement(_tpl.render('auth_ui_ulogin@widget', {'widget': self}))
 
 
 class _LoginForm(_form.Form):
@@ -38,20 +38,19 @@ class _LoginForm(_form.Form):
         self.add_widget(_widget.input.Hidden(
             uid=self.uid + '-widget-ulogin-token',  # It is important ID format fo JS code. Don't change!
             form_area='hidden',
-            required=True,
         ))
 
         # uLogin widget
         self.add_widget(_LoginWidget(
-            uid=self.uid + '-widget-ulogin'  # It is important ID format fo JS code. Don't change!
+            uid=self.uid + '-widget-ulogin',  # It is important ID format fo JS code. Don't change!
         ))
 
         # Submit button is not necessary, form submit performs by JS code
         self.remove_widget('action-submit')
 
 
-class ULogin(_auth.driver.Authentication):
-    """ULogin Driver
+class Auth(_auth.driver.Authentication):
+    """ULogin Auth Driver
     """
 
     def get_name(self) -> str:
@@ -64,16 +63,6 @@ class ULogin(_auth.driver.Authentication):
         """
         return 'uLogin'
 
-    def get_sign_up_form(self, **kwargs) -> _form.Form:
-        """Get the sign up form form.
-        """
-        return _LoginForm(**kwargs)
-
-    def get_sign_in_form(self, **kwargs) -> _form.Form:
-        """Get the sign in form form.
-        """
-        return self.get_sign_up_form(**kwargs)
-
     def sign_up(self, data: dict) -> _auth.model.AbstractUser:
         # Searching for token in input data
         token = data.get('token')
@@ -84,7 +73,7 @@ class ULogin(_auth.driver.Authentication):
                     break
 
         if not token:
-            raise ValueError('No uLogin token.')
+            raise ValueError('No uLogin token received')
 
         # Getting user's data from uLogin
         response = _urlopen('http://ulogin.ru/token.php?token={}&host={}'.format(token, _router.request().host))
@@ -102,10 +91,10 @@ class ULogin(_auth.driver.Authentication):
             user = _auth.get_user(email)
             is_new_user = False
 
-        except _auth.error.UserNotExist:
+        except _auth.error.UserNotFound:
             # User is not exists and its creation is not allowed
-            if not _settings.get('auth.signup_enabled'):
-                raise _auth.error.AuthenticationError(_lang.t('plugins.auth_ulogin@signup_is_disabled'))
+            if not _auth.is_sign_up_enabled():
+                raise _auth.error.AuthenticationError(_lang.t('auth_ui_ulogin@signup_is_disabled'))
             else:
                 # New users can be created only by system user
                 _auth.switch_user_to_system()
@@ -169,3 +158,30 @@ class ULogin(_auth.driver.Authentication):
         """Authenticate user.
         """
         return self.sign_up(data)
+
+    def sign_out(self, user: _auth.model.AbstractUser):
+        """Sign out user
+        """
+        pass
+
+
+class UI(_auth_ui.Driver):
+    def get_name(self) -> str:
+        """Get name of the driver
+        """
+        return 'ulogin'
+
+    def get_description(self) -> str:
+        """Get description of the driver
+        """
+        return 'uLogin'
+
+    def get_sign_up_form(self, **kwargs) -> _form.Form:
+        """Get the sign up form form.
+        """
+        return _LoginForm(**kwargs)
+
+    def get_sign_in_form(self, **kwargs) -> _form.Form:
+        """Get the sign in form form.
+        """
+        return self.get_sign_up_form(**kwargs)

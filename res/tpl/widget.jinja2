@@ -1,13 +1,13 @@
 <script type="text/javascript">
     function pytsite_ulogin_callback_{{ widget.uid | replace('-', '_') }}(token) {
-        var tokenInput = $('#' + '{{ widget.uid }}' + '-token').first();
+        var tokenInput = $('#' + '{{ widget.uid }}' + '-token');
 
         if (tokenInput.length) {
             tokenInput.val(token);
             tokenInput.closest('form').submit();
         }
         else {
-            alert('Cannot find token input element.');
+            console.error('Cannot find token input element');
         }
     }
 </script>
