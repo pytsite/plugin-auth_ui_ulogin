@@ -13,10 +13,6 @@ def plugin_load():
     lang.register_package(__name__)
     assetman.register_package(__name__)
 
-
-def plugin_load_console():
-    from plugins import assetman
-
     assetman.js_module('auth-ulogin-widget', __name__ + '@widget')
     assetman.t_js(__name__)
     assetman.t_less(__name__)
