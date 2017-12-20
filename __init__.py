@@ -26,3 +26,11 @@ def plugin_load_uwsgi():
     tpl.register_package(__name__)
     auth.register_auth_driver(_driver.Auth())
     auth_ui.register_driver(_driver.UI())
+
+
+def plugin_install():
+    from plugins import assetman
+
+    plugin_load()
+    assetman.build(__name__)
+    assetman.build_translations()
