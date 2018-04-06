@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.2 (2018-04-06)
+
+Support of `form-2.3`.
+
+
 ### 1.1.4 (2017-12-21)
 
 Init code refactored.

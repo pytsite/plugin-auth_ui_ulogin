@@ -1,34 +1,27 @@
 """PytSite uLogin Authentication Driver Plugin
 """
-
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
 
-def _register_assetman_resources():
+def plugin_load():
+    from pytsite import lang
     from plugins import assetman
 
-    if not assetman.is_package_registered(__name__):
-        assetman.register_package(__name__)
-        assetman.js_module('auth-ulogin-widget', __name__ + '@widget')
-        assetman.t_js(__name__)
-        assetman.t_less(__name__)
+    lang.register_package(__name__)
 
-    return assetman
+    assetman.register_package(__name__)
+    assetman.js_module('auth-ulogin-widget', __name__ + '@widget')
+    assetman.t_js(__name__)
+    assetman.t_less(__name__)
 
 
 def plugin_install():
-    assetman = _register_assetman_resources()
+    from plugins import assetman
+
     assetman.build(__name__)
     assetman.build_translations()
-
-
-def plugin_load():
-    from pytsite import lang
-
-    _register_assetman_resources()
-    lang.register_package(__name__)
 
 
 def plugin_load_uwsgi():

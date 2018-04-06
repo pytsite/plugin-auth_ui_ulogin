@@ -46,7 +46,7 @@ class _LoginForm(_form.Form):
         ))
 
         # Submit button is not necessary, form submit performs by JS code
-        self.remove_widget('action-submit')
+        self.remove_widget('action_submit')
 
 
 class Auth(_auth.driver.Authentication):
