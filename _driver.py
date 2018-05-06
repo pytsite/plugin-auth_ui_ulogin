@@ -4,7 +4,7 @@ import json as _json
 from time import strptime as _strptime
 from datetime import datetime as _datetime
 from urllib.request import urlopen as _urlopen
-from pytsite import tpl as _tpl, lang as _lang, router as _router, html as _html
+from pytsite import tpl as _tpl, lang as _lang, router as _router, html as _html, http as _http
 from plugins import widget as _widget, auth as _auth, auth_ui as _auth_ui, file as _file, form as _form
 
 __author__ = 'Alexander Shepetko'
@@ -176,12 +176,17 @@ class UI(_auth_ui.Driver):
         """
         return 'uLogin'
 
-    def get_sign_up_form(self, **kwargs) -> _form.Form:
+    def get_sign_up_form(self, request: _http.Request, **kwargs) -> _form.Form:
         """Get the sign up form form.
         """
-        return _LoginForm(**kwargs)
+        return _LoginForm(request, **kwargs)
 
-    def get_sign_in_form(self, **kwargs) -> _form.Form:
+    def get_sign_in_form(self, request: _http.Request, **kwargs) -> _form.Form:
         """Get the sign in form form.
         """
         return self.get_sign_up_form(**kwargs)
+
+    def get_restore_account_form(self, request: _http.Request, **kwargs):
+        """Get account restoration form
+        """
+        raise NotImplementedError('uLogin does not support account restoration')

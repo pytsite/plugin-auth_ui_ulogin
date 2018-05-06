@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.3 (2018-05-06)
+
+Support of `auth_ui-3.2`.
+
+
 ### 1.2 (2018-04-06)
 
 Support of `form-2.3`.

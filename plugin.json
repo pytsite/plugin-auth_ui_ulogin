@@ -1,6 +1,6 @@
 {
   "name": "auth_ui_ulogin",
-  "version": "1.2",
+  "version": "1.3",
   "description": {
     "en": "uLogin Authentication UI Driver",
     "ru": "uLogin Authentication UI Driver",
@@ -16,7 +16,7 @@
     "plugins": [
       "assetman",
       "auth",
-      "auth_ui",
+      "auth_ui>=3.2",
       "file",
       "form>=2.3",
       "twitter_bootstrap",
