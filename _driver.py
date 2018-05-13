@@ -21,7 +21,7 @@ class _LoginWidget(_widget.Abstract):
         """
         super().__init__(uid, **kwargs)
 
-        self._js_module = 'auth-ulogin-widget'
+        self._js_modules.append('auth-ulogin-widget')
         self._css += 'widget-ulogin'
 
     def _get_element(self, **kwargs) -> _html.Element:

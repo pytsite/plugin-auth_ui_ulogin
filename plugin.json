@@ -1,6 +1,6 @@
 {
   "name": "auth_ui_ulogin",
-  "version": "1.3",
+  "version": "1.4",
   "description": {
     "en": "uLogin Authentication UI Driver",
     "ru": "uLogin Authentication UI Driver",
@@ -18,7 +18,7 @@
       "auth",
       "auth_ui>=3.2",
       "file",
-      "form>=2.3",
+      "form>=4.1",
       "twitter_bootstrap",
       "widget"
     ]
