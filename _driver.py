@@ -7,7 +7,7 @@ from urllib.request import urlopen as _urlopen
 from pytsite import tpl as _tpl, lang as _lang, router as _router, html as _html, http as _http
 from plugins import widget as _widget, auth as _auth, auth_ui as _auth_ui, file as _file, form as _form
 
-__author__ = 'Alexander Shepetko'
+__author__ = 'Oleksandr Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
@@ -126,7 +126,7 @@ class Auth(_auth.driver.Authentication):
 
         # Alter nickname
         if is_new_user:
-            user.nickname = user.full_name
+            user.nickname = user.first_last_name
 
         # Gender
         if user.gender not in ('m', 'f') and 'sex' in ulogin_data:

@@ -1,6 +1,6 @@
 {
   "name": "auth_ui_ulogin",
-  "version": "1.4",
+  "version": "1.4.1",
   "description": {
     "en": "uLogin Authentication UI Driver",
     "ru": "uLogin Authentication UI Driver",
@@ -8,14 +8,14 @@
   },
   "url": "https://github.com/pytsite/plugin-auth_ui_ulogin",
   "author": {
-    "name": "Alexander Shepetko",
+    "name": "Oleksandr Shepetko",
     "email": "a@shepetko.com",
     "url": "https://shepetko.com"
   },
   "requires": {
     "plugins": [
       "assetman",
-      "auth",
+      "auth>=3.6",
       "auth_ui>=3.2",
       "file",
       "form>=4.1",

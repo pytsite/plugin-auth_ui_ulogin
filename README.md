@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.4.1 (2018-08-23)
+
+User's `full_name` usage replaced with `first_last_name`.
+
+
 ### 1.4 (2018-05-13)
 
 - Support of `form-4.1`.
