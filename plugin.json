@@ -1,6 +1,6 @@
 {
   "name": "auth_ui_ulogin",
-  "version": "1.4.1",
+  "version": "2.0",
   "description": {
     "en": "uLogin Authentication UI Driver",
     "ru": "uLogin Authentication UI Driver",
@@ -13,14 +13,13 @@
     "url": "https://shepetko.com"
   },
   "requires": {
-    "plugins": [
-      "assetman",
-      "auth>=3.6",
-      "auth_ui>=3.2",
-      "file",
-      "form>=4.1",
-      "twitter_bootstrap",
-      "widget"
-    ]
+    "pytsite": "8.x",
+    "plugins": {
+      "auth": "3.x",
+      "auth_ui": "4.x",
+      "file": "1.x",
+      "form": "5.x",
+      "widget": "3.x"
+    }
   }
 }

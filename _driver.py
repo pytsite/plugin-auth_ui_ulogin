@@ -1,15 +1,15 @@
 """PytSite uLogin Authentication Driver Plugin
 """
+__author__ = 'Oleksandr Shepetko'
+__email__ = 'a@shepetko.com'
+__license__ = 'MIT'
+
 import json as _json
 from time import strptime as _strptime
 from datetime import datetime as _datetime
 from urllib.request import urlopen as _urlopen
 from pytsite import tpl as _tpl, lang as _lang, router as _router, html as _html, http as _http
 from plugins import widget as _widget, auth as _auth, auth_ui as _auth_ui, file as _file, form as _form
-
-__author__ = 'Oleksandr Shepetko'
-__email__ = 'a@shepetko.com'
-__license__ = 'MIT'
 
 
 class _LoginWidget(_widget.Abstract):
@@ -21,7 +21,6 @@ class _LoginWidget(_widget.Abstract):
         """
         super().__init__(uid, **kwargs)
 
-        self._js_modules.append('auth-ulogin-widget')
         self._css += 'widget-ulogin'
 
     def _get_element(self, **kwargs) -> _html.Element:
